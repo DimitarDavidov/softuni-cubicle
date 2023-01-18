@@ -2,14 +2,14 @@ const cubeController = require('./controllers/cubeController');
 
 const router = require('express').Router();
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
     res.render('index');
 });
 
-app.get('/about', (req, res) => {
+router.get('/about', (req, res) => {
     res.render('about');
 });
 
-app.get('/create', cubeController.getNewCube);
+router.get('/create', cubeController.getNewCube);
 
 module.exports = router;
