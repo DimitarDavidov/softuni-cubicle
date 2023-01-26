@@ -12,6 +12,12 @@ router.post('/create', async (req, res) => {
     await Accessory.create({name, description , imageUrl});
 
     res.redirect('/'); 
-})
+});
+
+router.get('/attach', (req, res) => {
+    res.render('accessory/attach');
+});
+
+
 
 module.exports = router;
