@@ -5,10 +5,11 @@ const router = require('express').Router();
 
 router.get('/', homeController.getHomePage);
 router.get('/about', homeController.getAboutPage)
+router.get('/404', homeController.getErrorPage);
+
 router.get('/create', cubeController.getNewCube);
 router.post('/create', cubeController.postCreateCube);
 router.get('/details/:cubeId', cubeController.getDetails);
 
-router.get('/404', homeController.getErrorPage);
 
 module.exports = router;
