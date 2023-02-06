@@ -6,33 +6,33 @@ router.get('/login', (req, res) => {
     res.render('auth/login');
 });
 
-router.get('/register', (req,res) => {
+router.get('/register', (req, res) => {
     res.render('auth/register')
 });
 
 router.post('/login', async (req, res) => {
-    const {username, password } = req.body;
+    const { username, password } = req.body;
 
-    try{
-       const token = await authService.login(username, password);
-       console.log(token)
-    }catch(err){
+    try {
+        const token = await authService.login(username, password);
+        res.cookie('auth', token, {httpOnly: true})
+    } catch (err) {
         console.log(err);
-        return res.redirect('/')
+        res.redirect('/')
     }
     res.redirect('/')
 })
 
 router.post('/register', async (req, res) => {
-    const {username, password, repeatPassword} = req.body;
-    
-    if(password !== repeatPassword){
+    const { username, password, repeatPassword } = req.body;
+
+    if (password !== repeatPassword) {
         return res.redirect('/404')
     };
 
     const existingUser = await authService.getUserByUsername(username);
 
-    if(existingUser){
+    if (existingUser) {
         return res.redirect('/404')
     }
 
