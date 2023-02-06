@@ -2,6 +2,7 @@ const express = require('express');
 
 const routes = require('./routes')
 const config = require('./config/config');
+
 const setupViewEngine = require('./config/viewEngine');
 const initDatabase = require('./config/databaseinit')
 
